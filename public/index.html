@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>receipes</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+  <body>
+    <nav class="navbar">
+      <h1 class="text-2xl font-semibold uppercase ">food ninja</h1>
+      <div>
+        <button class="login-btn">login</button>
+        <button class="signup-btn">signup</button>
+      </div>
+    </nav>
+    <main class="flex">
+      <aside class="basis-2/12">
+        <ul id="aside-items-list" class="px-6 pt-4 flex flex-col gap-y-2">
+          <li data-page="main" class="aside-item active">Home</li>
+          <li data-page="about" class="aside-item">About</li>
+          <li data-page="contact" class="aside-item">Contact</li>
+        </ul>
+      </aside>
+      <section id="main-content" class="basis-10/12 p-4 bg-slate-200 grid grid-cols-4 gap-x-2"></section>
+    </main>
+
+    <script>
+      let menu = [
+        {
+          name: 'Title 1',
+          description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias minima ut nulla placeat aliquam iste, quae vero magnam doloremque assumenda!',
+          image: './images/image1.jpg',
+          category: 'vegeterian',
+          isShown: true,
+        },
+        {
+          name: 'Title 2',
+          description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias minima ut nulla placeat aliquam iste, quae vero magnam doloremque assumenda!',
+          image: './images/image2.jpg',
+          category: 'non-vegeterian',
+          isShown: true,
+        },
+      ];
+
+      let content = '';
+
+      menu.forEach((item) => {
+        if (item.isShown) {
+          content += `
+          <div class="card rounded bg-white shadow-md">
+            <img src="${item.image}" class="image max-h-40 w-full" alt="">
+            <div class="details p-4">
+              <h2 class="text-xl font-semibold mb-2">${item.name}</h2>
+              <p class="text-gray-600 mb-2">${item.description}</p>
+              <span class="inline-block bg-indigo-500 rounded-full text-white px-3 py-1 mt-2">${item.category}</span>
+            </div>
+          </div>
+          `;
+        }
+      });
+
+      document.getElementById('main-content').innerHTML = content;  
+    </script>
+
+    <!-- <script>
+      let content = `<p>Main page</p>`;
+      const ulElement = document.getElementById('aside-items-list');
+
+      // document.getElementById('main-content').innerHTML = content;
+
+      ulElement.querySelectorAll('li').forEach(function (li) {
+        li.addEventListener('click', function() {
+          ulElement.querySelectorAll('li').forEach((e) => { e.classList.remove('active'); });
+          li.classList.add('active');
+
+          if (li.dataset.page === "main") {
+            content = `<p>Main page</p>`;
+          } else if (li.dataset.page === 'about') {
+            content = `<p>About page</p>`;
+          } else if (li.dataset.page === 'contact') {
+            content = `<p>Contact page</p>`;
+          } else {
+            content = `<p>404 Not Found!</p>`;
+          }
+          
+          document.getElementById('main-content').innerHTML = content;
+        });
+      });
+    </script> -->
+  </body>
+</html>
